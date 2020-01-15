@@ -1,0 +1,19 @@
+server:
+   port: 9093
+
+spring:
+   application:
+      name: db-api        
+   boot:
+      admin:
+         client:
+            enabled: true
+            autoRegistration: true
+            url: http://localhost:9092/
+
+
+      
+
+
+
+
