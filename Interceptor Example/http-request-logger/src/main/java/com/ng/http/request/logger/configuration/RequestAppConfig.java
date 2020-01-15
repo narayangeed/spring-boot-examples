@@ -23,8 +23,7 @@ public class RequestAppConfig implements WebMvcConfigurer {
 		//registry.addInterceptor(customRequestInterceptor).addPathPatterns("/**/log-incoming-request/**/");
 		//registry.addInterceptor(commonRequestInterceptor);
 		registry.addInterceptor(commonRequestInterceptor).addPathPatterns("/**/logger/**/");
-		registry.addInterceptor(hellowRequestInterceptor).addPathPatterns("/**/hellow");
-		
+		registry.addInterceptor(hellowRequestInterceptor).addPathPatterns("/**/hellow");		
 		registry.addInterceptor(commonRequestInterceptor).addPathPatterns("/**/rest/**/");
 		
 		LOG.info("-----------------------Interceptor registered-------------------------");
