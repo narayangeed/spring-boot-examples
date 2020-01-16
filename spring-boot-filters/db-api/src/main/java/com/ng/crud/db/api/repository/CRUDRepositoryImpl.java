@@ -1,10 +1,8 @@
 package com.ng.crud.db.api.repository;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -20,54 +18,47 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 
 	@Override
 	public List<Employee> findByDepartmentName(String depName) {
-		List<Employee> empList = empSchema.stream().filter(em -> em.getDepartments().stream().anyMatch(dn -> dn.getName().equalsIgnoreCase(depName))).collect(Collectors.toList());	
-		return empList;	
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Employee> findByCity(String city) {
-		List<Employee> empList = empSchema.stream().filter(em -> (em.getAddress().getCity()).equalsIgnoreCase(city)).collect(Collectors.toList());	
-		return empList;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void insert(Employee emp) {
 		if(empSchema!=null && (!empSchema.contains(emp))) {
 			empSchema.add(emp);
-			Set<Employee> empSet = new HashSet<>(empSchema);
-			empSchema.clear();
-			empSchema.addAll(empSet);	
 		}
 	}
 
 	
 	@Override
 	public void insert(List<Employee> empList) {
-		if(empSchema!=null) {
+		if(empSchema!=null && (!empSchema.contains(empList))) {
 			empSchema.addAll(empList);
-			Set<Employee> empSet = new HashSet<>(empSchema);
-			empSchema.clear();
-			empSchema.addAll(empSet);	
 		}
 
 	}
 
 	@Override
 	public void save(Employee emp) {
-		if(empSchema!=null) {					
-			empSchema.add(emp);			
-			Set<Employee> empSet = new HashSet<>(empSchema);
-			empSchema.clear();
-			empSchema.addAll(empSet);			
+		if(empSchema!=null) {			
+			empSchema.remove(empSchema.indexOf(emp));
+			empSchema.add(emp);
 		}
 	}
 
 	@Override
 	public Employee findById(Integer id) {		
-		List<Employee> empList = empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList());			
-		return empList.get(0);		
+		List<Employee> emp = empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList());			
+		return emp.get(0);		
 	}
 	
+	//empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList())
 
 	@Override
 	public List<Employee> findAll() {		
@@ -76,7 +67,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	
 	private static List<Employee> prepareInitialData(){
 		
-		List<Employee> empList = new ArrayList<>();
+		List<Employee> empList = new ArrayList<Employee>();
 		
 		//prepare employee data
 		Address addr = new Address("Pune", "MH", "411001", "INDIA");
