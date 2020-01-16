@@ -1,8 +1,8 @@
 package com.ng.crud.db.api.repository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -18,14 +18,14 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 
 	@Override
 	public List<Employee> findByDepartmentName(String depName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> empList = empSchema.stream().filter(em -> em.getDepartments().stream().anyMatch(dn -> dn.getName().equalsIgnoreCase(depName))).collect(Collectors.toList());	
+		return empList;	
 	}
 
 	@Override
 	public List<Employee> findByCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> empList = empSchema.stream().filter(em -> (em.getAddress().getCity()).equalsIgnoreCase(city)).collect(Collectors.toList());	
+		return empList;
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 
 	@Override
 	public Employee findById(Integer id) {		
-		List<Employee> emp = empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList());			
-		return emp.get(0);		
+		List<Employee> empList = empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList());			
+		return empList.get(0);		
 	}
 	
 	//empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList())
@@ -67,7 +67,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	
 	private static List<Employee> prepareInitialData(){
 		
-		List<Employee> empList = new ArrayList<Employee>();
+		List<Employee> empList = new ArrayList<>();
 		
 		//prepare employee data
 		Address addr = new Address("Pune", "MH", "411001", "INDIA");
@@ -78,5 +78,6 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		empList.add(emp);
 		return empList;
 	}
-
+	
+	
 }
