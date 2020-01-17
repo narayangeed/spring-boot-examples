@@ -1,9 +1,0 @@
-server:
-   port: 9093
-   servlet:
-      context-path: /http-request-logger-tester
-
-spring:
-   application:
-      name: http-request-logger-tester   
-            
