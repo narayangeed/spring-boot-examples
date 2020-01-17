@@ -1,10 +1,10 @@
 package com.ng.crud.db.api.repository;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -84,7 +84,11 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		depList.add(new Department("IT-D", "IT"));
 		depList.add(new Department("CS-D", "CS"));
 		Employee emp = new Employee(1, "Om Prakash", "M", 10000L, addr, depList);
-		empList.add(emp);
+		empList.add(emp);			
+		
+		empList.add(new Employee(1, "Om Prakash", "M", 10000L, new Address("Bhopal", "MP", "411002", "INDIA"), new ArrayList<>(Arrays.asList(new Department("EC-D", "IT"),new Department("CS-D", "CS")))));
+		
+		
 		return empList;
 	}
 
