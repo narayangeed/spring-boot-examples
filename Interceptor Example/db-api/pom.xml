@@ -75,13 +75,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+
 		<dependency>
 			<groupId>com.ng</groupId>
-			<artifactId>http-request-logger</artifactId>
+			<artifactId>http-request-interceptor</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
-		
 	</dependencies>
 
 	<dependencyManagement>

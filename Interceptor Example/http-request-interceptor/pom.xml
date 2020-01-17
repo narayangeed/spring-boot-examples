@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ng</groupId>
-	<artifactId>http-request-logger</artifactId>
+	<artifactId>http-request-interceptor</artifactId>
 	<version>1.0</version>
-	<name>http-request-logger</name>
-	<description>Logging htpp request and response</description>
+	<name>http-request-interceptor</name>
+	<description>Logging http request and response</description>
 
 	<properties>
 		<java.version>1.8</java.version>
