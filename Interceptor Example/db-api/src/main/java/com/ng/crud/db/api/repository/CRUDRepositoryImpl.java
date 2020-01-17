@@ -86,7 +86,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		Employee emp = new Employee(1, "Om Prakash", "M", 10000L, addr, depList);
 		empList.add(emp);			
 		
-		empList.add(new Employee(1, "Om Prakash", "M", 10000L, new Address("Bhopal", "MP", "411002", "INDIA"), new ArrayList<>(Arrays.asList(new Department("EC-D", "IT"),new Department("CS-D", "CS")))));
+		empList.add(new Employee(2, "Om Prakash", "M", 10000L, new Address("Bhopal", "MP", "411002", "INDIA"), new ArrayList<>(Arrays.asList(new Department("EC-D", "IT"),new Department("CS-D", "CS")))));
 		
 		
 		return empList;
