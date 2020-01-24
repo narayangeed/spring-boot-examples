@@ -1,8 +1,7 @@
-package com.ng.crud.h2.db.api.model;
+package com.ng.crud.h2.db.api.dbmodel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +16,7 @@ import lombok.ToString;
 @Entity
 public class Department {
 	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private long id;
 	private String name;
 	private String code;	

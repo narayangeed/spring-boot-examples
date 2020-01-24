@@ -2,7 +2,7 @@ package com.ng.crud.h2.db.api.repository;
 
 import java.util.List;
 
-import com.ng.crud.h2.db.api.model.Employee;
+import com.ng.crud.h2.db.api.dbmodel.Employee;
 
 public interface CRUDRepository{		
 	List<Employee> findByDepartmentName(String depName);	

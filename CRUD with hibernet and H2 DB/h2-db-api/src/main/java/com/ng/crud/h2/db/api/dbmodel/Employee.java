@@ -1,4 +1,4 @@
-package com.ng.crud.h2.db.api.model;
+package com.ng.crud.h2.db.api.dbmodel;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import lombok.ToString;
 @Table(name = "TBL_EMPLOYEES")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private Long employeeId;
 	private String name;
 	private String gender;
@@ -37,7 +37,8 @@ public class Employee {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="employee_department_mapping",joinColumns=@JoinColumn(name="employee_id"),inverseJoinColumns=@JoinColumn(name="department_id"))
+	@OneToMany(targetEntity = Department.class, cascade=CascadeType.ALL)
+	@JoinColumn(name = "EmpDep_FK", referencedColumnName = "employeeId")
+	//@JoinTable(name="employee_department_mapping",joinColumns=@JoinColumn(name="employee_id"),inverseJoinColumns=@JoinColumn(name="department_id"))
 	private List<Department> departments;
 }

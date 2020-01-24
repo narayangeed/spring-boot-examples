@@ -1,7 +1,5 @@
 package com.ng.crud.h2.db.api.repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,9 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.ng.crud.h2.db.api.model.Address;
-import com.ng.crud.h2.db.api.model.Department;
-import com.ng.crud.h2.db.api.model.Employee;
+import com.ng.crud.h2.db.api.dbmodel.Employee;
 
 @Repository
 public class CRUDRepositoryImpl implements CRUDRepository {

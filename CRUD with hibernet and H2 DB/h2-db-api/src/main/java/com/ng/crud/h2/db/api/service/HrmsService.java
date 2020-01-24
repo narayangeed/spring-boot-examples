@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.ng.crud.h2.db.api.model.Employee;
+import com.ng.crud.h2.db.api.dbmodel.Employee;
 import com.ng.crud.h2.db.api.repository.H2DBRepository;
 
 @Service
@@ -17,30 +15,36 @@ public class HrmsService {
 	@Autowired
 	private H2DBRepository crudRepo;
 	
-	public ResponseEntity<?> saveEmployee(Employee emp) {		
-		crudRepo.save(emp);
-		System.out.println("Inserted Object : "+emp.toString());
-		return new ResponseEntity<>("Employee saved : "+emp.getEmployeeId(), HttpStatus.OK);
+	public Employee saveEmployee(Employee emp) {		
+		Employee savedEmp = crudRepo.save(emp);
+		System.out.println("Inserted Object : "+savedEmp.toString());
+		return savedEmp;
 	}
 	
-	public ResponseEntity<?> saveAllEmployees(List<Employee> empList) {		
+	public String saveAllEmployees(List<Employee> empList) {		
 		crudRepo.saveAll(empList);
 		System.out.println("Inserted Employees are  : ");
 		empList.stream().forEach(e -> e.getEmployeeId());
-		return new ResponseEntity<>("Employee saved count: "+empList.stream().count(), HttpStatus.OK);
+		return "Employee saved count: "+empList.stream().count();
+	}	
+	
+	public Optional<Employee> getEmployeeById(Long id) {		
+		Optional<Employee> optional = crudRepo.findById(id);
+		return optional;
 	}
 	
-	public ResponseEntity<?> updateEmployee(Employee emp) {		
-		crudRepo.save(emp);		
-		System.out.println("Inserted Object : "+emp.toString());
-		return new ResponseEntity<>("Employee updated : "+emp.getEmployeeId(), HttpStatus.OK);
+	public String deleteEmployeeById(Long id) {		
+		crudRepo.deleteById(id);
+		System.out.println("deleted Object : "+id);
+		return "Record deleted : "+id;
 	}
 	
-	public ResponseEntity<?> getEmployeeById(Long id) {		
-		Optional<Employee> emp = crudRepo.findById(id);
-		System.out.println("fetched Object : "+emp.toString());
-		return ResponseEntity.ok().body(emp);
+	public String deleteEmployee(Employee emp) {		
+		crudRepo.delete(emp);
+		System.out.println("deleted Object : "+emp.getEmployeeId());
+		return "Record deleted : "+emp.getEmployeeId();
 	}
+	
 	
 	/*public ResponseEntity<?> getEmployeeByDepartmentName(String depName) {	
 		System.out.println("Dep Name  -->"+depName);
@@ -56,10 +60,10 @@ public class HrmsService {
 		return ResponseEntity.ok().body(empList);
 	}*/
 	
-	public ResponseEntity<?> getAllEmployees() {		
-		List<Employee> emp = crudRepo.findAll();
-		System.out.println("fetched Object : "+emp.toString());
-		return ResponseEntity.ok().body(emp);
+	public List<Employee> getAllEmployees() {		
+		List<Employee> empList = crudRepo.findAll();
+		System.out.println("fetched Object : "+empList.toString());
+		return empList;
 	}
 
 }
