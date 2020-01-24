@@ -1,7 +1,5 @@
-package com.ng.crud.db.api.repository;
+package com.ng.crud.h2.db.api.repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,9 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.ng.crud.db.api.model.Address;
-import com.ng.crud.db.api.model.Department;
-import com.ng.crud.db.api.model.Employee;
+import com.ng.crud.h2.db.api.dbmodel.Employee;
 
 @Repository
 public class CRUDRepositoryImpl implements CRUDRepository {
@@ -63,7 +59,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	}
 
 	@Override
-	public Employee findById(Integer id) {		
+	public Employee findById(Long id) {		
 		List<Employee> empList = empSchema.stream().filter(f -> f.getEmployeeId()==id).collect(Collectors.toList());			
 		return empList.get(0);		
 	}
@@ -74,22 +70,13 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		return empSchema;
 	}
 	
-	private static List<Employee> prepareInitialData(){
-		
-		List<Employee> empList = new ArrayList<>();
-		
-		//prepare employee data
-		Address addr = new Address("Pune", "MH", "411001", "INDIA");
-		List<Department> depList = new ArrayList<>();		
-		depList.add(new Department("IT-D", "IT"));
-		depList.add(new Department("CS-D", "CS"));
-		Employee emp = new Employee(1, "Om Prakash", "M", 10000L, addr, depList);
-		empList.add(emp);			
-		
-		empList.add(new Employee(2, "Om Prakash", "M", 10000L, new Address("Bhopal", "MP", "411002", "INDIA"), new ArrayList<>(Arrays.asList(new Department("EC-D", "IT"),new Department("CS-D", "CS")))));
-		
-		
-		return empList;
+	private static List<Employee> prepareInitialData(){		
+		/*List<Employee> empList = new ArrayList<>();		
+		//prepare employee data				
+		empList.add(new Employee(2L, "Gopal", "M", "abc@gmail.com", 10000L, new Address("Pune", "MH", "411001", "INDIA"), new ArrayList<>(Arrays.asList(new Department("CS", "CD-D"),new Department("IT", "IT-D")))));
+		empList.add(new Employee(2L, "Om Prakash", "M", "abc@gmail.com", 10000L, new Address("Bhopal", "MP", "411002", "INDIA"), new ArrayList<>(Arrays.asList(new Department("EC", "EC-D"),new Department("CS", "CS-D")))));
+		return empList;*/
+		return null;
 	}
 
 }
